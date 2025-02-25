@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Notification API</title>
+</head>
+<body>
+    <h1>Notication</h1>
+    <p>
+        <img src="image/fil.jpg" width="100">
+    </p>
+    <p>
+        <button class="notiication-btn">Notify Me</button>
+    </p>
+    <script>
+        const button_elem = document.getElementsByClassName("notiication-btn")[0];
+        button_elem.addEventListener("click", () => getNotification());
+
+        function getNotification(){
+            if(!("Notification" in window)){
+                alert("This browser does not support desktop notification");
+            }else if(Notification.permission === "granted"){
+                const notification = new Notification('Hi there!', {
+                    body: 'Hello im fil',
+                    icon: 'image/fil.jpg'
+                });
+            }else if( Notification.permission !== "denied"){
+                Notification.requestPermission().then((permission) => {
+                    if(permission === "granted"){
+                        const notification = new Notification('Hi there!', {
+                            body: 'Hello im fil',
+                            icon: 'image/fil.jpg'
+                        });
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>
