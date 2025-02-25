@@ -6,7 +6,7 @@
     <title>JS Notification API</title>
 </head>
 <body>
-    <h1>Notication</h1>
+    <h1>JS Notication API</h1>
     <p>
         <img src="image/fil.jpg" width="100">
     </p>
@@ -14,22 +14,22 @@
         <button class="notiication-btn">Notify Me</button>
     </p>
     <script>
-        const button_elem = document.getElementsByClassName("notiication-btn")[0];
-        button_elem.addEventListener("click", () => getNotification());
+        const button_elem = document.getElementsByClassName("notiication-btn")[0]; // get the element
+        button_elem.addEventListener("click", () => getNotification()); // bind the element to event listener an that calls a function
 
         function getNotification(){
-            if(!("Notification" in window)){
+            if(!("Notification" in window)){ // Check if your browser supports browser notication
                 alert("This browser does not support desktop notification");
-            }else if(Notification.permission === "granted"){
-                const notification = new Notification('Hi there!', {
-                    body: 'Hello im fil',
-                    icon: 'image/fil.jpg'
+            }else if(Notification.permission === "granted"){ // Check if the permission is already been granted
+                const notification = new Notification('Hello there!', { // creates new notication object
+                    body: 'I\'m Fil',  // message
+                    icon: 'image/fil.jpg' // Image
                 });
-            }else if( Notification.permission !== "denied"){
-                Notification.requestPermission().then((permission) => {
-                    if(permission === "granted"){
-                        const notification = new Notification('Hi there!', {
-                            body: 'Hello im fil',
+            }else if( Notification.permission !== "denied"){ // check if the permission is not yet grantend but not denied
+                Notification.requestPermission().then((permission) => { // ask the user for notication permission
+                    if(permission === "granted"){ // if the user is permitend to accept notication 
+                        const notification = new Notification('Hello there!', {
+                            body: 'I\'m Fil',
                             icon: 'image/fil.jpg'
                         });
                     }
